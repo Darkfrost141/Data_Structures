@@ -1,2 +1,2 @@
 # Data_Structures
-220 Codes
+CSE220 Codes
