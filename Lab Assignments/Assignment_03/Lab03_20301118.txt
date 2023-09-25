@@ -1,0 +1,91 @@
+Name: Shouvik Banerjee Argha
+ID: 20301118
+Section:10
+Lab Assignment: 03
+===================================================================
+class Node:
+  def __init__(self,element,prev,n):
+    self.element= element
+    self.next = n
+    self.prev= prev
+#===========================
+class DoublyList:
+  def __init__(self,a):
+    self.head = Node(None,None,None)
+    self.head.next = self.head.prev = self.head
+    if len(a)<=0:
+      return
+    else:
+      cod=self.head
+      for i in a:
+        n = Node(i ,None, None)
+        n.next = self.head
+        n.prev = cod
+        self.head.prev = n
+        cod.next = n
+        cod = cod.next
+#================================
+  def showList(self):
+    count=0
+    n = self.head.next
+    while n != self.head:
+      count+=1
+      print(n.element, end = " ")
+      n = n.next
+    if count == 0:
+      print("Empty list")
+#=================================
+  def insert(self, newElement):
+    newnode = Node(newElement, None, None)
+    n = self.head.next
+    while n.next!= self.head:
+      n= n.next
+    newnode.prev = n
+    n.next=newnode
+    newnode.next=self.head
+    self.head.prev=newnode
+#==================================
+  def insertIndex(self,newElement,index):
+    newnode = Node(newElement, None, None)
+    step=0
+    temp=self.head
+    while step<index:
+      temp=temp.next
+      step+=1
+    newnode.prev=temp
+    temp.next.prev=newnode
+    newnode.next=temp.next
+    temp.next=newnode
+#=====================================
+  def remove(self,index):
+    temp=self.head
+    step=0
+    while step<index:
+      temp=temp.next
+      step+=1
+    red=temp.next
+    temp.next=red.next
+    red.next.prev=temp
+    red.next=red.prev=red = None
+#==========================================
+  def removeKey(self,deleteKey):
+    temp=self.head
+    while temp.element!= deleteKey:
+      temp=temp.next
+    red = temp
+    cod = temp.next
+    red.prev.next= cod
+    cod.prev = red.prev
+    temp.next=temp.prev=None
+    temp=None
+#==========================================    
+test = DoublyList([5,7,9,2])
+#test.showList()
+#test.insert(14)
+#test.showList()
+#test.insertIndex(6788,4)
+#test.showList()
+#test.remove(1)
+#test.showList()
+#test.removeKey(7)
+#test.showList()

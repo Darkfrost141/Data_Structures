@@ -1,0 +1,191 @@
+Shouvik Banerjee Argha
+Sec:10
+ID:20301118
+LabAssignment:05
+==============================================================================
+#Task01(a)
+class recurssion(object):
+    def factorial(self, n):
+        if n == 0 or n == 1:
+            return 1
+        else:
+            return n * (self.factorial(n - 1))
+r1 = recurssion()
+x =  int(input("Enter the Number: "))
+print("The Factorial of" ,x,"is:",r1.factorial(x))
+
+================================================================
+#Task01(b)
+class recurssion(object):
+  def fibonacci(self, count):
+    if count == 1:
+        return 0
+    if count == 2:
+        return 1
+    else:
+        return self.fibonacci(count-1) + self.fibonacci(count - 2)
+r2=recurssion()
+x=int(input("Enter The Number: "))+1
+print("The Fibonacci Number of",x-1,"is:",r2.fibonacci(x))
+===================================================================
+#Task01(c)
+class recurssion(object):
+  def printelements(self, arr, size):
+    if size !=-1:
+        self.printelements(arr, size - 1)
+        print(arr[size])
+r3 = recurssion()
+arr_1 = [1, 2, 3, 4, 5]
+r3.printelements(arr_1,len(arr_1)-1)
+===================================================================
+#Task01(d)
+class recurssion(object):
+    def powerN(self, base, power):
+        if power==0:
+            return 1
+        if power==1:
+            return base
+        else:
+            return base*self.powerN(base,power-1)
+r4 = recurssion()
+x= int(input("Enter The Base Number:"))
+y= int(input("Enter The number of Power:"))
+print("The Answer is:",x,"^",y,"is:",r4.powerN(x,y))
+=====================================================================
+#Task02(a)
+class recurssion(object):
+  def binary(n):
+    if n==0:
+      return 0
+    elif n==1:
+      return 1
+    else:
+      return (n%2+10*(binary(n//2)))
+r5 = recurssion()
+Berlin=int(input("Please enter the decimal number: "))
+print("Binary Number of",Berlin,"is:",corresponding(Berlin))
+
+=======================================================================
+#Task02(b)
+class Node:
+  def __init__(self,data):
+      self.data = data
+      self.next = None
+  def push(head, data):
+    newnode = Node(data)
+    newnode.next = head
+    head = newnode
+    return head
+  def addition(head):
+    total=0
+    if head != None:
+        total +=  head.data
+        return total + addition(head.next)
+    else:
+        return total;
+head = None
+head = push(head,100)
+head = push(head,20)
+head = push(head,30)
+head = push(head,40)
+head = push(head,50)
+head = push(head,60)
+addition(head)
+===========================================================================
+#Task02(c)
+class Node:
+  def __init__(self,data):
+    self.data = data
+    self.next = None
+
+  def reverseorder(head):
+    if head == None:
+        return 0
+    print(head.data), reverseorder(head.next)
+head = None
+head = push(head, 10)
+head = push(head, 20)
+head = push(head, 30)
+head = push(head, 40)
+head = push(head, 50)
+head = push(head, 60)
+reverseorder(head)
+===========================================================================
+#Task03
+class recurssion:
+    def hocBuilder(self, height):
+        if height==0:
+            return 0
+        if height==1:
+            return 8
+        else:
+            return 5+self.hocBuilder(height-1)
+r8 = recurssion()
+print(r8.hocBuilder(2))
+=========================================================================
+#Task04(a)
+class recurssion:
+    def position(self, n):
+        if n>0:
+            self.position(n-1)
+            print(n ,end=" ")
+    
+    def pattern_0(self, n):
+        if n>1:
+            self.pattern_0(n-1)
+        self.position(n)
+        print()
+r9 = recurssion()
+r9.pattern_0(5)
+r10 = recurssion()
+=========================================================================
+#Task04(b)
+def a(space,tempsp):
+    if tempsp>0:
+        a(space, tempsp - 1)
+        print()
+        b(space-tempsp)
+        c(tempsp)
+    else:
+        return
+
+def b(val):
+    if val > 0:
+        b(val-1)
+        print(' ',end=' ')
+    else:
+        return
+
+def c(val):
+    if val > 0:
+        c(val-1)
+        print(val,end=' ')
+    else:
+        return
+
+
+a(5,5)
+===========================================================================
+#Task05
+class FinalQ:
+  def print(self,array,idx):
+    if idx<len(array):
+      profit = self.calcprofit(array[idx])
+      idx+=1
+      print("{}. Investment: {}; Profit: {}".format(idx, array[idx-1], profit))
+      self.print(array,idx)
+
+  def calcprofit(self,investment):
+    profit=0
+    if investment>100000:
+      profit+=(investment-100000)*0.08
+      profit+=(75000*0.045)
+    elif investment<=25000:
+      return 0
+    else:
+      profit+=(investment-25000)*0.045
+    return profit
+array=[25000,100000,250000,350000]
+Berlin= FinalQ()
+Berlin.print(array, 0)
+

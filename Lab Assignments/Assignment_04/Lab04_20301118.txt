@@ -1,0 +1,130 @@
+Name: Shouvik Banerjee
+ID:20301118
+Section:10
+LabAssignment:04
+======================================================================================
+#Task01
+class Stack:
+
+    def __init__(self):
+        self.stack= []
+        self.expression = []
+        self.pointer = -1
+        self.check = 0
+    def push(self, element):
+        self.stack += [element]
+        self.expression += [self.check]
+        self.pointer += 1
+    def peek(self):
+        value=self.expression[self.pointer]
+        return self.stack[self.pointer]
+    def pop(self):
+        value = self.stack[self.pointer]
+        self.pointer = self.pointer - 1
+        self.stack = self.stack[:-1]
+        return value
+#Above Idea taken from BuX
+
+    def Arraycheck(self, a):
+      for i in a:
+        self.check += 1
+        if self.pointer == -1 and i in ")}]":
+          print("This expression is NOT correct.\nError at character # ", self.check, ".", "'", i, "'", "- not opened.", sep="")
+          return            
+        elif i in "({[":
+          self.push(i)
+        elif i in ")}]":
+          cod = self.peek()
+          if( i == ")" and cod == "(") or ( i == "}" and cod == "{") or ( i == "]" and cod == "["):
+            self.pop()
+          else:
+            print("This expression is NOT correct.")
+            print("Error at character # ",self.expression[self.pointer], ".", "'", cod, "'", "- not closed.", sep="")
+            return
+      if self.pointer==-1:
+        print("This expression is correct.")
+      else:
+        print("This expression is NOT correct. \nError at character # ", self.expression[self.pointer], ".", "'", cod, "'", "- not opened.", sep="")
+      
+a = input()
+test = Stack()
+test.Arraycheck(a)
+====================================================================================================================
+#Task02
+class Node:
+  def __init__(self, value,next=None):
+    self.value = value
+    self.next = next
+
+
+class Stack:
+  def __init__(self):
+      self.expression = []
+      self.arraysize = 0
+      self.pointer = -1
+      self.check = 0
+      self.head = None
+
+  def push(self, value):
+    if self.head == None:
+      self.head = Node(value)
+    else:
+      n = Node(value)
+      n.next = self.head
+      self.head = n
+
+  def peek(self):
+    return (self.head.value)
+
+  def pop(self):
+    temp = self.head
+    self.head = self.head.next
+    temp.value = None
+    temp.next = None
+#Above Idea taken from BuX
+
+  def Arraycheck(self, a):
+    for i in a:
+      self.check += 1
+      if self.pointer== -1 and i in ")}]":
+        print("This expression is NOT correct.")
+        if(self.arrSize==0):
+          print("Error at character # ", self.check, ".", "'", i, "'", "- not opened.", sep="")
+        else:
+          print("Error at character # ", self.expression[self.arraysize - 1], ".", "'", i, "'", "- not opened.",sep="")
+        return
+
+
+      elif i in "({[":
+        self.push(i)
+        self.pointer+=1
+              
+        self.expression.append(self.check)
+        self.arraysize += 1
+                
+      elif i in ")}]":
+        cod = self.peek()
+        if (i == ")" and cod == "(") or  (i == "}" and cod == "{") or (i == "]" and cod == "["):
+          self.pop()
+          self.pointer-=1
+          self.arraysize-=1
+        else:
+          print("This expression is NOT correct.")
+          if (self.arraysize == 0):
+            print("Error at character # ", self.check, ".", "'", cod, "'", "- not closed.", sep="")
+          else:
+            print("Error at character # ", self.expression[self.arraysize - 1], ".", "'", cod, "'", "- not closed.",sep="")
+          return
+
+    if self.pointer == -1:
+      print("This expression is correct.")
+    else:
+      print("This expression is NOT correct.")
+      if (self.arraysize == 0):
+        print("Error at character # ", self.check, ".", "'", i, "'", "- not opened.", sep="")
+      else:
+        print("Error at character # ", self.expression[self.arraysize - 1], ".", "'", i, "'", "- not opened.", sep="")
+      return
+a = input()
+test = Stack()
+test.Arraycheck(a)

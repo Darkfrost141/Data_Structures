@@ -1,0 +1,275 @@
+Name: Shouvik Banerjee
+ID:20301118
+Section:10
+Lab Assignment: 02
+=============================================================================================================
+#Task01: (I)
+class Node:
+  def __init__(self, element, n=None):
+    self.element = element
+    self.next=n
+#=================================
+#Task02: (1) & Task01: (II)
+class Mylist:
+  def __init__(self,a):
+    self.head= None
+    self.next = None
+    if a== None:
+      self.head = None
+    elif isinstance (a, list):
+      for i in range (0, len(a)):
+        new= Node(a[i],None)
+        if self.head==None:
+          self.head=new
+          Next =self.head
+        else:
+          Next.next=new
+          Next=new
+    elif isinstance (a, MyList):
+      self.head=None
+      Next=None
+      new=a.head
+      while(new is not None):
+        newNode=Node(new.element,None)
+        if(self.head==None):
+          self.head=newNode
+          Next=newNode
+        else:
+          Next.next=newNode
+          Next=newNode
+          new=new.next
+    else:
+      raise Exception("The Input is Invalid Input")
+#==================================    
+  def count(self):
+    count=0
+    n= self.head
+    while n!= None:
+      count+=1
+      n=n.next
+    return count
+#=========================================
+#Task02: (2)
+  def showlist(self):
+    count = 0
+    n = self.head
+    while n != None:
+      count += 1
+      print(n.element, end = " ")
+      n = n.next
+    if count == 0:
+      print("Empty list")
+#============================
+#Task02: (3)
+  def isEmpty(self):
+      count = 0
+      n = self.head
+      while n != None:
+          count += 1
+
+          n = n.next
+      if count == 0:
+          return True
+      else:
+          return False
+      
+#===============================
+#Task02: (4)
+  def clear(self):
+    count = 0
+    count_2 = 0
+    n = self.head
+    while n != None:
+      count_2+=1
+      n= self.head
+      n= n.next
+      if self.head != None:
+        self.head = None
+      j = self.head
+      while j != None:
+        j = j.next
+        count+=1
+    if count_2 == 0:
+      print("List is empty")
+    else:
+      count == 0
+      print("Elements removed")
+#===================================
+#Task02: (5)
+  def insert(self, newElement):
+    n= self.head
+    while n!=None:
+      if(n.element == newElement):
+        print("newElement already exists in the list")
+        break
+      else:
+        if n.next==None:
+          n.next = Node(newElement,None)
+          break
+      n=n.next
+    
+
+#================================
+#Task02: (6)
+  def insertindex(self,newelement,index):
+    newnode = Node(newelement,None)
+    temp1=self.head
+    while temp1!= None:
+      if temp1.element == newnode.element:
+        print ("newElement already exists")
+        break
+      temp1=temp1.next
+    if (self.head != None):
+      temp = self.head
+      step=1
+      if index==0:
+        newnode.next = self.head
+        self.head = newnode
+    
+      else:
+        while (temp!= None and step<index):
+          temp = temp.next
+          step+=1
+        newnode.next=temp.next
+        temp.next =  newnode
+
+
+ 
+    
+ 
+#=================================
+#Task02: (7)
+  def remove(self, deletekey):
+    n = self.head
+    if n == None:
+      print("Empty List")
+    elif deletekey == n.element:
+        self.head = n.next
+    else:
+      rdr = n
+      while n.next != None:
+        if deletekey == rdr.next.element:
+          break
+        rdr = rdr.next
+      if rdr.next == None:
+        print("None")
+      else:
+        rdr.next= rdr.next.next
+
+#=============================
+#Task03: (1)
+  def evennumbers(self):
+    n = self.head
+    even = []
+    while n != None:
+      if n.element%2==0:
+        even.append(n.element)
+      n=n.next
+    count= len(even)
+    for i in range(0,count):
+      if i<count-1:
+        print(even[i],end = "->")
+      else:
+        print(even[i])
+#==================================
+#Task03: (2)
+  def check(self,newelement):
+    n = self.head
+    while n!= None:
+      if n.element == newelement:
+        return True
+      n= n.next
+    return False
+#==================================
+#Task03: (3)
+  def reverselist(self):
+    prev = None
+    n = self.head
+    while  n != None:
+      nextNode = n.next
+      n.next = prev
+      prev = n
+      n = nextNode
+    self.head = prev
+#==================================
+#Task03: (4)
+  def sorting(self):
+    n = self.head
+    serial = None
+    if self.head == None:
+      return
+    else:
+      while n!= None:
+        serial = n.next
+        while(serial != None):
+          if (n.element>serial.element):
+            temp= n.element
+            n.element= serial.element
+            serial.element= temp
+          serial= serial.next
+        n= n.next
+#==================================
+#Task03: (5)
+  def addition(self):
+    n=self.head
+    sum=0
+    while n!=None:
+      sum+=n.element
+      n=n.next
+    print(sum)
+#===================================
+#Task03: (6)
+  def rotate(self,direction,k):
+    if direction == "Left":
+      for i in range(k):
+
+        head = self.head
+        tail = head
+        while tail.next!=None:
+          tail = tail.next
+        tail.next = head
+        self.head= head.next
+        head.next= None
+    elif direction == "Right":
+      for i in range(0,(self.count())-k):
+        head = self.head
+        tail = head
+        while tail.next!=None:
+          tail = tail.next
+        tail.next = head
+        self.head= head.next
+        head.next= None
+
+
+  
+
+
+
+
+
+#====================
+rdr= [10,20,30,40,50]
+rdr_2=[]
+gta= Mylist(rdr)
+#gta.showlist()
+#print(gta.isEmpty())
+#print(gta.clear())
+#gta.insert(50)
+##gta.showlist()
+#gta.remove(20)
+#gta.evennumbers()
+#print(gta.check(87))
+#gta.reverselist()
+#gta.sorting()
+#gta.addition()
+#gta.rotate("Left",2)
+#gta.showlist()
+#gta.rotate("Right",2)
+#gta.showlist()
+
+
+
+
+
+
+

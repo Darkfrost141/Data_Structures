@@ -1,0 +1,117 @@
+Name: Shouvik Banerjee Argha
+ID:20301118
+Sec:10
+=============================================================================================
+#Task01
+class KeyIndex:
+  def __init__(self,a):
+    self.a=a
+
+  def Minvalue(self):
+    minval=self.a[0]
+    for i in self.a:
+      if i < minval:
+        minval=i
+    return (minval)
+
+  def Maxvalue(self):
+    maxval=self.a[0]
+    for i in self.a:
+      if i> maxval:
+        maxval=i
+    return (maxval)
+
+  def Keyindex(self):
+    minimum=self.Minvalue()
+    a=[]
+    for i in self.a:
+      a.append(i)
+    if minimum<0:
+      k=minimum*(-1)
+      for i in range(len(a)):
+        a[i]=a[i]+k
+      maximum= self.Maxvalue()
+      x=[0]*(maximum+1+k)
+      for i in a:
+        x[i]+=1
+      return(x)
+    
+    else:
+      maximum= self.Maxvalue()
+      a=self.a
+      x=[0]*(maximum+1)
+      for i in a:
+        x[i]+=1
+      return(x)
+  def sorting(self):
+    minimum=self.Minvalue()
+    x=self.Keyindex()
+    if minimum<0:
+      d=minimum*(-1)
+      for i in range(len(self.a)):
+        for j in range(len(x)):
+          if x[j]>0:
+            self.a[i]=j-d
+            x[j]-=1
+            break
+      print(self.a)
+    
+    else:
+      for i in range(len(self.a)):
+        for j in range(len(x)):
+          if x[j]>0:
+            self.a[i]=j
+            x[j]-=1
+            break
+      print(self.a)
+
+  def searching(self,value):
+      for i in self.a:
+        if i==value:
+          return True
+
+      return False
+
+cod=KeyIndex([-10,30,20,-50,80])
+cod.Keyindex()
+cod.sorting()
+print(cod.searching(-50))
+print(cod.searching(70))
+==============================================================================
+#Task02
+class Hashtable:
+    def __init__(self):
+        self.size = 9
+        self.cod = [0] * self.size
+    def __str__(self):
+        return str(self.cod)
+    def hash(self, key):
+        x = 0
+        val = "AEIOU"
+        number = "0123456789"
+        for i in key:
+            if i not in number and i not in val:
+                x+=1
+        sum_of_num = 0
+        for item in key:
+            if item in number:
+                sum_of_num = sum_of_num + int(item)
+        return ((x*24)+sum_of_num) % 9
+    def add(self, data):
+        adam = self.hash(data)
+        if self.cod[adam] == 0:
+            self.cod[adam] = data
+        else:
+            i = 0
+            flag = False
+            while not flag:
+                jac = (adam + i) % 9
+                if self.cod[jac] == 0:
+                    self.cod[jac] = data
+                    flag = True
+                else:
+                    i+=1
+test = Hashtable()
+y=input("")
+test.add(y)
+print(test)
